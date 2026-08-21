@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martell O'Grady Estate Agents | Sligo</title>
+<meta name="description" content="Independent estate agents in Sligo specialising in residential sales, lettings, property management and valuations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#top" class="brand">
+      <img src="assets/logo.png" alt="Martell O'Grady Estate Agents logo">
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="properties.html">Properties</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:0719150155" class="nav-phone">071 <span>915 0155</span></a>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61592986859425" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v6h4v-6h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/ogradyproperties/?hl=en" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.2"/></svg>
+        </a>
+        <a href="https://wa.me/353834733618" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 21l4.8-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.7 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c.6 1 1.4 1.7 2.4 2.2l.7-.7c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.3.6-.2.8-.8 1.3-1.6 1.4-1.5.2-3.5-.9-4.8-2.2-1.3-1.3-2.3-3.1-2.1-4.7.1-.1.2-.3.2-.4Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <line x1="0" y1="1" x2="20" y2="1" stroke="#1c1b18" stroke-width="1.4"/>
+          <line x1="0" y1="7" x2="20" y2="7" stroke="#1c1b18" stroke-width="1.4"/>
+          <line x1="0" y1="13" x2="20" y2="13" stroke="#1c1b18" stroke-width="1.4"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0;">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow on-dark">Independent Estate Agents &mdash; Sligo</span>
+        <h1>With decades of local experience, we provide trusted advice across residential, commercial and land property.</h1>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get a free valuation</a>
+          <a href="#services" class="btn btn-ghost on-dark">View our services</a>
+        </div>
+      </div>
+
+      <div class="hero-art reveal">
+        <img src="assets/assetherocoast.jpg.png" alt="Sligo coastline and surrounding countryside">
+      </div>
+    </div>
+
+    <div class="hero-baseline reveal">
+      <div class="item"><strong>Sales</strong>Residential, commercial &amp; land</div>
+      <div class="item"><strong>Lettings</strong>Tenant sourcing &amp; management</div>
+      <div class="item"><strong>Valuations</strong>Accurate, independent property valuations</div>
+    </div>
+  </section>
+
+  <!-- FEATURED PROPERTIES -->
+  <section id="featured-properties">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Current instructions</span>
+        <h2>Featured properties.</h2>
+        <p>A selection of what we currently have to sale and to let across Sligo.</p>
+      </div>
+      <div class="listing-grid" id="featuredGrid" style="padding-bottom:0;">
+        <div class="loading-state">Loading properties&hellip;</div>
+      </div>
+      <div style="text-align:center; margin-top:44px;">
+        <a href="properties.html" class="btn btn-ghost">View all properties</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">What we do</span>
+        <h2>We help with sales, lettings and valuations across Sligo.</h2>
+        <p>Providing straightforward, practical advice based on local knowledge and experience. From your first call through to the final details, we keep you informed, handle the process carefully and make moving, letting or valuing your property as simple and stress-free as possible.</p>
+      </div>
+
+      <div class="services-grid reveal">
+        <a href="properties.html" class="service-card">
+          <h3>Sales</h3>
+          <p>From first valuation to keys in hand, we manage viewings, offers and negotiations so your sale keeps moving.</p>
+        </a>
+
+        <a href="properties.html" class="service-card">
+          <h3>Lettings &amp; Property Management</h3>
+          <p>Tenant sourcing, referencing, rent collection and day-to-day management</p>
+        </a>
+
+        <a href="#contact" class="service-card">
+          <h3>Valuations</h3>
+          <p>We issue mortgage, probate and legal valuation reports along with market appraisals for homeowners considering selling.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-art reveal">
+          <img src="assets/aboutus.jpg" alt="Martell O'Grady Estate Agents" />
+        </div>
+        <div class="about-copy reveal">
+          <span class="eyebrow">Local knowledge</span>
+          <h2>About Us</h2>
+          <p>Established in 1996 by Bryan Corcoran, the business quickly became one of Sligo's most trusted independent estate agencies, earning a reputation for professionalism, integrity and outstanding customer service.</p>
+          <p>For almost 30 years, Bryan J Corcoran Auctioneers has successfully assisted clients with residential, commercial and land sales, valuations, lettings and property management.</p>
+          <p>Having worked alongside Bryan and Mary for many years, Martell O'Grady has proudly taken over the business, which now trades as Martell O'Grady Estate Agents. The new name reflects the firm's continued evolution while maintaining the same values, local knowledge and personal service that clients have trusted since 1996.</p>
+          <p>Our values are founded on honesty, integrity and exceptional customer service, ensuring a seamless property experience for buyers, sellers, landlords and tenants throughout County Sligo.</p>
+          <p>Supported by Property Administrator &amp; Sales Consultant Elina Mat, our team combines decades of local experience with modern marketing techniques to ensure every client receives a professional, responsive and personal service.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Reviews</span>
+        <h2>What Our Clients Say</h2>
+        <p><em>We believe good property service starts with good relationships.</em></p>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"The team couldn't have been more helpful. They completed my valuation report quickly, efficiently and at great value. A pleasure to deal with from start to finish."</blockquote>
+          <cite>Verified Client</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Professional, friendly and incredibly helpful throughout the entire process. Made everything straightforward and I wouldn't hesitate to recommend him."</blockquote>
+          <cite>Dee</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"We sold our home in a very short timeframe while achieving exactly what we had hoped for. They provided excellent advice, communicated throughout the process and made the experience stress-free."</blockquote>
+          <cite>Verified Home Seller</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Honest, professional and always willing to help. The entire office provide an outstanding level of service."</blockquote>
+          <cite>Shane Keady</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Professional, caring and approachable. A pleasure to work with and I would highly recommend them."</blockquote>
+          <cite>Tanya Satchwell</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"Excellent service with friendly, professional interactions throughout. Highly recommended."</blockquote>
+          <cite>PJ O'Neill</cite>
+        </article>
+        <article class="review-card reveal">
+          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <blockquote>"The team couldn't have been more helpful. Their knowledge, professionalism and customer service were exceptional."</blockquote>
+          <cite>Verified Client</cite>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <span class="eyebrow on-dark">Get in touch</span>
+          <h2>Talk to us about your property.</h2>
+          <p>Whether you're selling, letting or looking for a valuation, we're here to help. Get in touch with the office and we'll be happy to talk through your requirements.</p>
+
+          <ul class="contact-details">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 18C10 18 16.5 12.6 16.5 8C16.5 4.4 13.6 2 10 2C6.4 2 3.5 4.4 3.5 8C3.5 12.6 10 18 10 18Z" stroke="#d9aa3b" stroke-width="1.3"/><circle cx="10" cy="8" r="2.4" stroke="#d9aa3b" stroke-width="1.3"/></svg>
+              <div>
+                <span class="label">Office</span>
+                <span class="value">1 Old Market Street, Abbeyquarter South, Sligo, Ireland</span>
+              </div>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5C3 3.9 3.9 3 5 3H7.2L8.6 6.8L6.8 8.2C7.6 10 9 11.4 10.8 12.2L12.2 10.4L16 11.8V14C16 15.1 15.1 16 14 16C8 16 3 11 3 5Z" stroke="#d9aa3b" stroke-width="1.3" stroke-linejoin="round"/></svg>
+              <div>
+                <span class="label">Phone</span>
+                <a class="value" href="tel:0719150155">071 915 0155</a>
+              </div>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4" width="15" height="12" rx="1" stroke="#d9aa3b" stroke-width="1.3"/><path d="M3 5L10 11L17 5" stroke="#d9aa3b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div>
+                <span class="label">Email</span>
+                <a class="value" href="mailto:info@corcoranauctioneers.com">info@corcoranauctioneers.com</a>
+              </div>
+            </li>
+          </ul>
+
+          <div class="map-embed">
+            <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=1%20Old%20Market%20Street%2C%20Abbeyquarter%20South%2C%20Sligo%2C%20Ireland&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <div class="form-success" id="formSuccess">Thanks &mdash; your message has been received. We'll be in touch shortly.</div>
+          <form id="enquiryForm">
+            <div class="form-row">
+              <div class="field">
+                <label for="fname">Name</label>
+                <input type="text" id="fname" name="name" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="fphone">Phone</label>
+                <input type="tel" id="fphone" name="phone" autocomplete="tel">
+              </div>
+            </div>
+            <div class="field">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" name="email" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="finterest">I'm enquiring about</label>
+              <select id="finterest" name="interest">
+                <option>Selling a property</option>
+                <option>Letting a property</option>
+                <option>A property valuation</option>
+                <option>Property management</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fmessage">Message</label>
+              <textarea id="fmessage" name="message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Send message</button>
+            <p class="form-note">This form needs to be connected to an email service (e.g. Formspree or Netlify Forms) once the site is live &mdash; it doesn't send anywhere yet.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="footer-brand">
+        <img src="assets/logo.png" alt="Martell O'Grady Estate Agents">
+        <span class="name">Martell O'Grady Estate Agents</span>
+      </a>
+      <nav class="footer-links">
+        <a href="properties.html">Properties</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="tel:0719150155">071 915 0155</a>
+      </nav>
+      <div class="social-links footer-socials">
+        <a href="https://www.facebook.com/profile.php?id=61592986859425" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 8h3V4h-3c-3.3 0-5 1.9-5 5v3H6v4h3v6h4v-6h3.2l.8-4H13V9c0-.7.3-1 1-1Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/ogradyproperties/?hl=en" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.7" r="1.2"/></svg>
+        </a>
+        <a href="https://wa.me/353834733618" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2a8.8 8.8 0 0 0-7.6 13.2L3.2 21l4.8-1.2A8.8 8.8 0 1 0 12 3.2Z" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8.7 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.5.6c.6 1 1.4 1.7 2.4 2.2l.7-.7c.2-.2.4-.2.6-.1l1.5.7c.3.1.4.3.3.6-.2.8-.8 1.3-1.6 1.4-1.5.2-3.5-.9-4.8-2.2-1.3-1.3-2.3-3.1-2.1-4.7.1-.1.2-.3.2-.4Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Martell O'Grady Estate Agents. All rights reserved.</span>
+      <span>1 Old Market Street, Abbeyquarter South, Sligo, Ireland</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="assets/properties-config.js"></script>
+<script src="assets/properties.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  renderFeaturedGrid();
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+
+  // fake form submit
+  const form = document.getElementById('enquiryForm');
+  const success = document.getElementById('formSuccess');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    success.classList.add('show');
+    form.reset();
+    success.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+</script>
+
+</body>
+</html>

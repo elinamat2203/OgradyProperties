@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Property | Martell O'Grady Estate Agents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="Martell O'Grady Estate Agents logo">
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="properties.html">Properties</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a href="tel:0719150155" class="nav-phone">071 <span>915 0155</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <svg width="20" height="14" viewBox="0 0 20 14" fill="none">
+          <line x1="0" y1="1" x2="20" y2="1" stroke="#1c1b18" stroke-width="1.4"/>
+          <line x1="0" y1="7" x2="20" y2="7" stroke="#1c1b18" stroke-width="1.4"/>
+          <line x1="0" y1="13" x2="20" y2="13" stroke="#1c1b18" stroke-width="1.4"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap" style="padding-top:36px;">
+    <div id="detailContainer">
+      <div class="loading-state">Loading property&hellip;</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="index.html" class="footer-brand">
+        <img src="assets/logo.png" alt="Martell O'Grady Estate Agents">
+        <span class="name">Martell O'Grady Estate Agents</span>
+      </a>
+      <nav class="footer-links">
+        <a href="properties.html">Properties</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="tel:0719150155">071 915 0155</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Martell O'Grady Estate Agents. All rights reserved.</span>
+      <span>1 Old Market Street, Abbeyquarter South, Sligo, Ireland</span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="assets/properties-config.js"></script>
+<script src="assets/properties.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  renderPropertyDetail();
+</script>
+
+</body>
+</html>
