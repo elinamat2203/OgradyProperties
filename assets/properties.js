@@ -38,6 +38,14 @@ function statusClass(status){
   return '';
 }
 
+function isSaleAgreed(status){
+  return String(status || '').trim().toLowerCase() === 'sale agreed';
+}
+
+function saleAgreedRibbon(status){
+  return isSaleAgreed(status) ? '<span class="sale-agreed-ribbon">SALE AGREED</span>' : '';
+}
+
 function splitList(val){
   if(!val) return [];
   return String(val).split(/[;|]/).map(s => s.trim()).filter(Boolean);
@@ -60,6 +68,12 @@ function resolveImagePath(value){
 }
 
 function imageFallback(image){
+  const source = image.getAttribute('src') || '';
+  if(!image.dataset.extensionFallback && /^assets\/.*\.(jpg|jpeg)$/i.test(source)){
+    image.dataset.extensionFallback = 'true';
+    image.src = source + '.jpg';
+    return;
+  }
   image.onerror = null;
   image.src = PLACEHOLDER_IMG;
 }
@@ -176,7 +190,8 @@ async function renderListingGrid(){
       <a class="listing-card reveal is-visible" href="property.html?id=${encodeURIComponent(id)}">
         <div class="listing-photo">
           <img src="${img}" alt="${r.title||r.address}" loading="lazy" onerror="imageFallback(this)">
-          ${r.status ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
+          ${saleAgreedRibbon(r.status)}
+          ${r.status && !isSaleAgreed(r.status) ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
         </div>
         <div class="listing-body">
           ${r.price ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
@@ -221,7 +236,8 @@ async function renderFeaturedGrid(){
     <a class="listing-card reveal is-visible" href="property.html?id=${encodeURIComponent(id)}">
       <div class="listing-photo">
         <img src="${img}" alt="${r.title||r.address}" loading="lazy" onerror="imageFallback(this)">
-        ${r.status ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
+        ${saleAgreedRibbon(r.status)}
+        ${r.status && !isSaleAgreed(r.status) ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
       </div>
       <div class="listing-body">
         ${r.price ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
@@ -272,6 +288,7 @@ async function renderPropertyDetail(){
         <div class="detail-gallery">
           <div class="main-photo">
             <img id="mainPhoto" src="${images[0]}" alt="${row.title||row.address}" onerror="imageFallback(this)">
+            ${saleAgreedRibbon(row.status)}
             ${images.length > 1 ? `<button type="button" class="gallery-arrow gallery-arrow-prev" id="galleryPrev" aria-label="Previous property image">&lsaquo;</button>
             <button type="button" class="gallery-arrow gallery-arrow-next" id="galleryNext" aria-label="Next property image">&rsaquo;</button>` : ''}
           </div>
@@ -288,7 +305,8 @@ async function renderPropertyDetail(){
       </div>
 
       <aside class="detail-side">
-        ${row.status ? `<span class="status-pill">${row.status}</span>` : ''}
+        ${isSaleAgreed(row.status) ? '<div class="sale-agreed-indicator">SALE AGREED</div>' : ''}
+        ${row.status && !isSaleAgreed(row.status) ? `<span class="status-pill">${row.status}</span>` : ''}
         <div class="detail-price">${euro(row.price)}</div>
         <div class="detail-address">${row.address||''}</div>
         <ul class="detail-facts">
@@ -308,10 +326,15 @@ async function renderPropertyDetail(){
   const thumbs = container.querySelectorAll('.detail-thumbs button');
   let activeImage = 0;
 
+  function thumbnailSource(index){
+    const thumbnail = thumbs[index]?.querySelector('img');
+    return thumbnail?.currentSrc || thumbnail?.src || images[index];
+  }
+
   function showImage(index){
     activeImage = (index + images.length) % images.length;
     mainPhoto.classList.add('is-changing');
-    mainPhoto.src = images[activeImage];
+    mainPhoto.src = thumbnailSource(activeImage);
     window.requestAnimationFrame(() => {
       mainPhoto.classList.remove('is-changing');
     });
@@ -321,9 +344,15 @@ async function renderPropertyDetail(){
   }
 
   if(images.length > 1){
+    thumbs.forEach((button, thumbIndex) => {
+      button.querySelector('img').addEventListener('load', () => {
+        if(thumbIndex === activeImage) showImage(activeImage);
+      });
+    });
     document.getElementById('galleryPrev').addEventListener('click', () => showImage(activeImage - 1));
     document.getElementById('galleryNext').addEventListener('click', () => showImage(activeImage + 1));
     thumbs.forEach((button, thumbIndex) => button.addEventListener('click', () => showImage(thumbIndex)));
+    showImage(0);
 
     let touchStartX = 0;
     let touchStartY = 0;

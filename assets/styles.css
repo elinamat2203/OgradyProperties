@@ -829,6 +829,25 @@
   padding:6px 12px;
 }
 .listing-status.let, .listing-status.sale-agreed{ background:var(--stone); color:#fff; }
+.sale-agreed-ribbon{
+  position:absolute;
+  top:30px;
+  right:-50px;
+  z-index:1;
+  width:230px;
+  padding:12px 8px;
+  background:var(--deep);
+  border-top:2px solid var(--gold-bright);
+  border-bottom:2px solid var(--gold-bright);
+  color:var(--gold-bright);
+  font-size:0.82rem;
+  font-weight:700;
+  letter-spacing:0.1em;
+  line-height:1.2;
+  text-align:center;
+  transform:rotate(45deg);
+  transform-origin:center;
+}
 .listing-body{ padding:22px 22px 26px; display:flex; flex-direction:column; gap:8px; flex:1; }
 .listing-price{
   font-family:'Fraunces', serif;
@@ -881,6 +900,13 @@
 .detail-gallery .main-photo img.is-changing{
   opacity:0.35;
   transform:scale(1.015);
+}
+.detail-gallery .main-photo .sale-agreed-ribbon{
+  top:38px;
+  right:-54px;
+  width:250px;
+  padding:13px 8px;
+  font-size:0.9rem;
 }
 .gallery-arrow{
   position:absolute;
@@ -953,6 +979,20 @@
   color:var(--deep);
   font-size:0.7rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
   padding:6px 12px; margin-bottom:16px;
+}
+.sale-agreed-indicator{
+  display:block;
+  width:max-content;
+  max-width:100%;
+  background:var(--deep);
+  border:2px solid var(--gold-bright);
+  color:var(--gold-bright);
+  font-size:0.82rem;
+  font-weight:700;
+  letter-spacing:0.12em;
+  line-height:1.2;
+  padding:10px 14px;
+  margin-bottom:18px;
 }
 .detail-price{ font-family:'Fraunces', serif; font-size:2rem; color:var(--ink); }
 .detail-address{ color:var(--stone); margin-top:6px; font-size:0.98rem; }
