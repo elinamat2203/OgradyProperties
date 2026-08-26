@@ -165,18 +165,19 @@ async function renderListingGrid(){
 
   function propertyType(row){
     const type = String(row.type || '').toLowerCase();
-    if(type.includes('commercial')) return 'commercial';
-    if(type.includes('land')) return 'land';
-    if(type) return 'residential';
-    return '';
+    if(String(row.id || '').trim() === '4' || type.includes('commercial')) return ['commercial'];
+    if(type.includes('land')) return ['land'];
+    if(type) return ['residential'];
+    return [];
   }
 
   function draw(){
     const filtered = rows.filter(r =>
       propertyCategory(r) === activeCategory &&
-      (activeType === 'all' || propertyType(r) === activeType)
+      (activeType === 'all' || propertyType(r).includes(activeType))
     );
-    countEl.textContent = filtered.length + (filtered.length === 1 ? ' property' : ' properties');
+    const availableCount = filtered.filter(r => !isSaleAgreed(r.status)).length;
+    countEl.textContent = availableCount + (availableCount === 1 ? ' property' : ' properties');
 
     if(!filtered.length){
       grid.innerHTML = `<div class="empty-state"><p>No properties match those filters.</p></div>`;
