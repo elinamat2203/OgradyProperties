@@ -194,7 +194,7 @@ async function renderListingGrid(){
           ${r.status && !isSaleAgreed(r.status) ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
         </div>
         <div class="listing-body">
-          ${r.price ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
+          ${r.price && !isSaleAgreed(r.status) ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
           <div class="listing-title">${r.title || r.address}</div>
           <div class="listing-address">${r.address||''}</div>
           <div class="listing-meta">
@@ -240,7 +240,7 @@ async function renderFeaturedGrid(){
         ${r.status && !isSaleAgreed(r.status) ? `<span class="listing-status ${statusClass(r.status)}">${r.status}</span>` : ''}
       </div>
       <div class="listing-body">
-        ${r.price ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
+        ${r.price && !isSaleAgreed(r.status) ? `<div class="listing-price">${euro(r.price)}</div>` : ''}
         <div class="listing-title">${r.title || r.address}</div>
         <div class="listing-address">${r.address||''}</div>
         <div class="listing-meta">
@@ -307,7 +307,7 @@ async function renderPropertyDetail(){
       <aside class="detail-side">
         ${isSaleAgreed(row.status) ? '<div class="sale-agreed-indicator">SALE AGREED</div>' : ''}
         ${row.status && !isSaleAgreed(row.status) ? `<span class="status-pill">${row.status}</span>` : ''}
-        <div class="detail-price">${euro(row.price)}</div>
+        ${!isSaleAgreed(row.status) && row.price ? `<div class="detail-price">${euro(row.price)}</div>` : ''}
         <div class="detail-address">${row.address||''}</div>
         <ul class="detail-facts">
           ${row.beds ? `<li><span>Bedrooms</span><span>${row.beds}</span></li>` : ''}
