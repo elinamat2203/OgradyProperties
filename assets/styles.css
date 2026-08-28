@@ -609,6 +609,8 @@
   .review-modal{ position:fixed; inset:0; z-index:20; display:grid; place-items:center; padding:20px; }
   .review-modal-backdrop{ position:absolute; inset:0; background:rgba(28,27,24,0.72); }
   .review-dialog{ position:relative; width:min(100%, 560px); max-height:90vh; overflow:auto; background:var(--parchment); color:var(--ink); padding:38px; box-shadow:0 24px 70px rgba(0,0,0,0.28); }
+  .review-dialog .field input, .review-dialog .field textarea{ color:#222; caret-color:#222; }
+  .review-dialog .field input::placeholder, .review-dialog .field textarea::placeholder{ color:#666; }
   .review-dialog .section-head{ text-align:left; margin-bottom:24px; }
   .review-dialog .section-head p{ margin-left:0; }
   .modal-close{ position:absolute; top:12px; right:16px; border:0; background:none; color:var(--ink); font-size:1.8rem; line-height:1; cursor:pointer; }
