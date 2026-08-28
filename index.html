@@ -210,11 +210,6 @@
           <blockquote>"Excellent service with friendly, professional interactions throughout. Highly recommended."</blockquote>
           <cite>PJ O'Neill</cite>
         </article>
-        <article class="review-card reveal">
-          <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-          <blockquote>"The team couldn't have been more helpful. Their knowledge, professionalism and customer service were exceptional."</blockquote>
-          <cite>Verified Client</cite>
-        </article>
       </div>
       <div class="reviews-grid" id="approvedReviews" aria-live="polite"></div>
     </div>
@@ -377,6 +372,14 @@
   function escapeReviewHtml(value){
     return String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
   }
+  async function readReviewResponse(response){
+    const body = await response.text();
+    try{
+      return { response, data: body ? JSON.parse(body) : {} };
+    }catch(error){
+      return { response, data: { error:'The review service is temporarily unavailable. Please try again shortly.' } };
+    }
+  }
   async function renderApprovedReviews(){
     const container = document.getElementById('approvedReviews');
     try{
@@ -423,8 +426,9 @@
     event.preventDefault(); reviewError.textContent = ''; reviewSubmit.disabled = true;
     try{
       const response = await fetch('/api/reviews', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.fromEntries(new FormData(reviewForm)))});
-      const result = await response.json();
-      if(!response.ok) throw new Error(result.error || 'Unable to submit your review.');
+      const parsed = await readReviewResponse(response);
+      if(!parsed.response.ok) throw new Error(parsed.data.error || 'Unable to submit your review. Please try again.');
+      if(!parsed.data.ok) throw new Error('The review service returned an unexpected response. Please try again.');
       reviewForm.hidden = true; reviewSuccess.classList.add('show');
     }catch(error){ reviewError.textContent = error.message; }
     finally{ reviewSubmit.disabled = false; }

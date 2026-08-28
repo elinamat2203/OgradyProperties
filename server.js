@@ -45,4 +45,5 @@ app.get('/api/admin/reviews', adminOnly, (req, res) => res.json(database.prepare
 app.patch('/api/admin/reviews/:id', adminOnly, (req, res) => { if(!['Approved','Rejected'].includes(req.body.status)) return res.status(400).json({ error:'Invalid status.' }); const result = database.prepare('UPDATE reviews SET status = ? WHERE id = ?').run(req.body.status, Number(req.params.id)); if(!result.changes) return res.status(404).json({ error:'Review not found.' }); res.json({ ok:true }); });
 app.use(express.static(__dirname));
 const port = Number(process.env.PORT || 3000);
-app.listen(port, () => console.log(`Website running at http://localhost:${port}`));
+if(require.main === module) app.listen(port, () => console.log(`Website running at http://localhost:${port}`));
+module.exports = app;
