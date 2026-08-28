@@ -176,6 +176,7 @@
         <span class="eyebrow">Reviews</span>
         <h2>What Our Clients Say</h2>
         <p><em>We believe good property service starts with good relationships.</em></p>
+        <button type="button" class="btn btn-primary review-open" id="openReviewForm">Leave a Review</button>
       </div>
 
       <div class="reviews-grid">
@@ -215,8 +216,37 @@
           <cite>Verified Client</cite>
         </article>
       </div>
+      <div class="reviews-grid" id="approvedReviews" aria-live="polite"></div>
     </div>
   </section>
+
+  <div class="review-modal" id="reviewModal" hidden>
+    <div class="review-modal-backdrop" data-close-review></div>
+    <div class="review-dialog" role="dialog" aria-modal="true" aria-labelledby="reviewDialogTitle">
+      <button type="button" class="modal-close" id="closeReviewForm" aria-label="Close review form">&times;</button>
+      <div class="section-head">
+        <span class="eyebrow">Client feedback</span>
+        <h2 id="reviewDialogTitle">Leave a Review</h2>
+        <p>Your review will be sent to our team for approval before it appears on the website.</p>
+      </div>
+      <div class="form-success" id="reviewSuccess" role="status">Thank you for your review. Your feedback has been submitted and will be reviewed by our team.</div>
+      <div class="form-error" id="reviewError" role="alert"></div>
+      <form id="reviewForm">
+        <div class="field"><label for="reviewName">Full name</label><input type="text" id="reviewName" name="name" required maxlength="100" autocomplete="name"></div>
+        <div class="field"><label for="reviewEmail">Email address</label><input type="email" id="reviewEmail" name="email" required maxlength="254" autocomplete="email"></div>
+        <fieldset class="rating-field"><legend>Star rating</legend><div class="rating-options">
+          <label><input type="radio" name="rating" value="1" required><span aria-hidden="true">&#9733;</span><span class="sr-only">1 star</span></label>
+          <label><input type="radio" name="rating" value="2"><span aria-hidden="true">&#9733;</span><span class="sr-only">2 stars</span></label>
+          <label><input type="radio" name="rating" value="3"><span aria-hidden="true">&#9733;</span><span class="sr-only">3 stars</span></label>
+          <label><input type="radio" name="rating" value="4"><span aria-hidden="true">&#9733;</span><span class="sr-only">4 stars</span></label>
+          <label><input type="radio" name="rating" value="5"><span aria-hidden="true">&#9733;</span><span class="sr-only">5 stars</span></label>
+        </div></fieldset>
+        <div class="field"><label for="reviewText">Review</label><textarea id="reviewText" name="text" required maxlength="2000"></textarea></div>
+        <div class="review-trap" aria-hidden="true"><label for="reviewWebsite">Website</label><input id="reviewWebsite" name="website" tabindex="-1" autocomplete="off"></div>
+        <button type="submit" class="btn btn-primary" id="reviewSubmit" style="width:100%;">Submit review</button>
+      </form>
+    </div>
+  </div>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
@@ -344,6 +374,20 @@
 
   renderFeaturedGrid();
 
+  function escapeReviewHtml(value){
+    return String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
+  }
+  async function renderApprovedReviews(){
+    const container = document.getElementById('approvedReviews');
+    try{
+      const response = await fetch('/api/reviews');
+      if(!response.ok) return;
+      const reviews = await response.json();
+      container.innerHTML = reviews.map(review => `<article class="review-card reveal is-visible"><div class="review-stars" aria-label="${review.rating} out of 5 stars">${'&#9733;'.repeat(review.rating)}${'&#9734;'.repeat(5 - review.rating)}</div><blockquote>${escapeReviewHtml(review.text)}</blockquote><cite>${escapeReviewHtml(review.name)}</cite></article>`).join('');
+    }catch(error){ console.error('Could not load approved reviews', error); }
+  }
+  renderApprovedReviews();
+
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
@@ -365,6 +409,27 @@
     form.reset();
     success.scrollIntoView({behavior:'smooth', block:'nearest'});
   });
+
+  const reviewModal = document.getElementById('reviewModal');
+  const reviewForm = document.getElementById('reviewForm');
+  const reviewSuccess = document.getElementById('reviewSuccess');
+  const reviewError = document.getElementById('reviewError');
+  const reviewSubmit = document.getElementById('reviewSubmit');
+  function closeReviewModal(){ reviewModal.hidden = true; document.body.classList.remove('modal-open'); }
+  document.getElementById('openReviewForm').addEventListener('click', () => { reviewModal.hidden = false; document.body.classList.add('modal-open'); document.getElementById('reviewName').focus(); });
+  document.getElementById('closeReviewForm').addEventListener('click', closeReviewModal);
+  reviewModal.querySelector('[data-close-review]').addEventListener('click', closeReviewModal);
+  reviewForm.addEventListener('submit', async event => {
+    event.preventDefault(); reviewError.textContent = ''; reviewSubmit.disabled = true;
+    try{
+      const response = await fetch('/api/reviews', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(Object.fromEntries(new FormData(reviewForm)))});
+      const result = await response.json();
+      if(!response.ok) throw new Error(result.error || 'Unable to submit your review.');
+      reviewForm.hidden = true; reviewSuccess.classList.add('show');
+    }catch(error){ reviewError.textContent = error.message; }
+    finally{ reviewSubmit.disabled = false; }
+  });
+  document.addEventListener('keydown', event => { if(event.key === 'Escape' && !reviewModal.hidden) closeReviewModal(); });
 </script>
 
 </body>

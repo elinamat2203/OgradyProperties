@@ -567,6 +567,7 @@
     margin-left:auto;
     margin-right:auto;
   }
+  .review-open{ margin-top:20px; }
   .reviews-grid{
     display:grid;
     grid-template-columns:repeat(3, 1fr);
@@ -604,6 +605,39 @@
     letter-spacing:0.08em;
     text-transform:uppercase;
   }
+  .review-modal[hidden]{ display:none; }
+  .review-modal{ position:fixed; inset:0; z-index:20; display:grid; place-items:center; padding:20px; }
+  .review-modal-backdrop{ position:absolute; inset:0; background:rgba(28,27,24,0.72); }
+  .review-dialog{ position:relative; width:min(100%, 560px); max-height:90vh; overflow:auto; background:var(--parchment); color:var(--ink); padding:38px; box-shadow:0 24px 70px rgba(0,0,0,0.28); }
+  .review-dialog .section-head{ text-align:left; margin-bottom:24px; }
+  .review-dialog .section-head p{ margin-left:0; }
+  .modal-close{ position:absolute; top:12px; right:16px; border:0; background:none; color:var(--ink); font-size:1.8rem; line-height:1; cursor:pointer; }
+  .rating-field{ border:0; padding:0; margin:0 0 20px; }
+  .rating-field legend{ font-size:0.74rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--stone); margin-bottom:8px; }
+  .rating-options{ display:flex; gap:8px; }
+  .rating-options label{ cursor:pointer; color:var(--line); font-size:1.8rem; line-height:1; }
+  .rating-options label:has(input:checked), .rating-options label:has(~ label input:checked){ color:var(--gold); }
+  .rating-options input{ position:absolute; opacity:0; }
+  .rating-options label:focus-within{ outline:2px solid var(--gold); outline-offset:3px; }
+  .review-trap{ position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
+  .form-error{ color:#a43b32; font-size:0.86rem; margin:12px 0; }
+  .modal-open{ overflow:hidden; }
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  .admin-page{ background:var(--parchment); min-height:100vh; }
+  .admin-shell{ width:min(100% - 40px, 1000px); margin:0 auto; padding:100px 0 70px; }
+  .admin-panel{ background:var(--panel); border:1px solid var(--line); padding:28px; margin-top:30px; }
+  .admin-toolbar{ display:flex; justify-content:space-between; align-items:center; gap:20px; margin-bottom:20px; }
+  .admin-toolbar h2{ margin:0; }
+  .admin-review{ display:flex; justify-content:space-between; gap:30px; padding:24px 0; border-top:1px solid var(--line); }
+  .admin-review h3{ margin:12px 0 3px; }
+  .admin-review p{ margin:10px 0 0; }
+  .admin-meta{ color:var(--stone); font-size:0.82rem; }
+  .admin-status{ display:inline-block; padding:5px 8px; font-size:0.68rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; border:1px solid var(--line); }
+  .status-approved{ color:#39724c; border-color:#9dbba5; }
+  .status-rejected{ color:#a43b32; border-color:#d7aaa5; }
+  .status-pending{ color:#986e16; border-color:#d9aa3b; }
+  .admin-actions{ display:flex; align-items:center; gap:10px; flex:none; }
+  @media (max-width:640px){ .review-dialog{ padding:30px 22px; } .admin-shell{ width:min(100% - 28px, 1000px); padding-top:60px; } .admin-review{ display:block; } .admin-actions{ margin-top:18px; } }
 
   @media (max-width:900px){
     .reviews-grid{ grid-template-columns:repeat(2, 1fr); }
